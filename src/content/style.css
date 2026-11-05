@@ -1,0 +1,233 @@
+/* DualFlow Translator - page injection styles */
+
+.flow-translate-container {
+  display: block !important;
+  position: static !important;
+  width: 100% !important;
+  /* 目标元素若为 flex 容器，强制换行独占一行，避免与原文并排 */
+  flex: 0 0 100% !important;
+  flex-basis: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 4px 0 8px 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  clear: both !important;
+  float: none !important;
+  font-style: normal !important;
+  text-align: left !important;
+  /* 译文不继承宿主段落的首行缩进 / 字间距，避免与原文视觉不一致 */
+  text-indent: 0 !important;
+  /* 译文不参与宿主的文字选中与行高计算 */
+  letter-spacing: normal !important;
+}
+
+.flow-translate-container.is-hidden {
+  display: none !important;
+}
+
+.flow-translate-container .flow-translate-sub {
+  display: block !important;
+  position: relative !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif !important;
+  font-size: 0.95em !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  text-align: left !important;
+  text-indent: 0 !important;
+  color: #4b5563 !important;
+  background-color: rgba(59, 130, 246, 0.04) !important;
+  border-left: 2px solid #3b82f6 !important;
+  border-radius: 0 4px 4px 0 !important;
+  padding: 6px 12px !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  animation: df-fade-in 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.flow-translate-container .flow-translate-text {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 操作胶囊：悬浮时淡入 */
+.flow-translate-container .flow-translate-actions {
+  position: absolute !important;
+  top: 2px !important;
+  right: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  padding: 2px 4px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(228, 228, 231, 0.9) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 150ms ease-out !important;
+}
+
+.flow-translate-container .flow-translate-sub:hover .flow-translate-actions,
+.flow-translate-container .flow-translate-sub:focus-within .flow-translate-actions {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.flow-translate-container .flow-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  background: transparent !important;
+  color: #71717a !important;
+  cursor: pointer !important;
+  transition: color 150ms ease-out, background-color 150ms ease-out !important;
+}
+
+.flow-translate-container .flow-action-btn:hover {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: #3b82f6 !important;
+}
+
+.flow-translate-container .flow-action-btn.is-copied {
+  color: #10b981 !important;
+}
+
+/* 骨架屏 */
+.flow-translate-container .flow-translate-skeleton {
+  width: 60% !important;
+  height: 1.1em !important;
+  border-radius: 3px !important;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%) !important;
+  background-size: 200% 100% !important;
+  animation: df-skeleton-pulse 1.5s infinite ease-in-out !important;
+  margin: 4px 0 !important;
+}
+
+/* 错误条 */
+.flow-translate-container .flow-translate-error {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 0.85em !important;
+  color: #e11d48 !important;
+  background: rgba(239, 68, 68, 0.06) !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  line-height: 1.5 !important;
+}
+
+.flow-translate-container .flow-error-text {
+  flex: 1 1 auto !important;
+  word-break: break-word !important;
+}
+
+.flow-translate-container .flow-retry-btn {
+  flex: 0 0 auto !important;
+  background: #ffffff !important;
+  border: 1px solid #e11d48 !important;
+  color: #e11d48 !important;
+  border-radius: 3px !important;
+  padding: 1px 8px !important;
+  font-size: 0.85em !important;
+  cursor: pointer !important;
+  transition: transform 150ms ease-out !important;
+}
+
+.flow-translate-container .flow-retry-btn:active {
+  transform: scale(0.96) !important;
+}
+
+/* 还原标记 */
+.flow-translate-restore {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  margin: 0 0 6px 0 !important;
+  padding: 1px 6px !important;
+  font-size: 11px !important;
+  line-height: 1.6 !important;
+  color: #71717a !important;
+  background: rgba(59, 130, 246, 0.06) !important;
+  border: 1px dashed rgba(59, 130, 246, 0.35) !important;
+  border-radius: 9999px !important;
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+@keyframes df-skeleton-pulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes df-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+  .flow-translate-container .flow-translate-sub {
+    color: #9ca3af !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-left-color: #60a5fa !important;
+  }
+
+  .flow-translate-container .flow-translate-actions {
+    background: rgba(39, 39, 42, 0.92) !important;
+    border-color: #3f3f46 !important;
+  }
+
+  .flow-translate-container .flow-action-btn {
+    color: #a1a1aa !important;
+  }
+
+  .flow-translate-container .flow-translate-skeleton {
+    background: linear-gradient(90deg, #27272a 25%, #3f3f46 50%, #27272a 75%) !important;
+  }
+
+  .flow-translate-container .flow-retry-btn {
+    background: #27272a !important;
+  }
+}
+
+/* 显式主题模式（设置页指定 light / dark 时覆盖系统偏好） */
+.flow-translate-container[data-df-theme='light'] .flow-translate-sub {
+  color: #4b5563 !important;
+  background-color: rgba(59, 130, 246, 0.04) !important;
+  border-left-color: #3b82f6 !important;
+}
+
+.flow-translate-container[data-df-theme='light'] .flow-translate-skeleton {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%) !important;
+}
+
+.flow-translate-container[data-df-theme='dark'] .flow-translate-sub {
+  color: #9ca3af !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-left-color: #60a5fa !important;
+}
+
+.flow-translate-container[data-df-theme='dark'] .flow-translate-skeleton {
+  background: linear-gradient(90deg, #27272a 25%, #3f3f46 50%, #27272a 75%) !important;
+}

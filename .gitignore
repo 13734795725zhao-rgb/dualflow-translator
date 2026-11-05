@@ -1,0 +1,32 @@
+# ---- Build output ----
+# dist/ holds the packaged extension: unzipped build, ZIP, self-signed CRX3
+# and checksums. Release artefacts belong on GitHub Releases, not in the tree.
+dist/
+*.crx
+*.zip
+*.sha256
+
+# ---- Signing keys: NEVER commit ----
+# .keys/dualflow-local.pem is the private key used to sign the CRX3 package.
+.keys/
+*.pem
+*.key
+
+# ---- Dependencies ----
+node_modules/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# ---- Local logs ----
+*.log
+
+# ---- AI tooling scratch dirs (never publish) ----
+.agent/
+.ai-memory/
+.claude/

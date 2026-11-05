@@ -1,0 +1,461 @@
+/* DualFlow Translator - Popup styles (Design Tokens: zinc + blue-600) */
+
+:root {
+  --df-brand: #2563eb;
+  --df-brand-hover: #1d4ed8;
+  --df-surface-bg: #ffffff;
+  --df-surface-card: #f9fafb;
+  --df-surface-raised: #ffffff;
+  --df-border-base: #e4e4e7;
+  --df-text-main: #18181b;
+  --df-text-muted: #71717a;
+  --df-success: #059669;
+  --df-warning: #d97706;
+  --df-danger: #e11d48;
+  --df-motion-fast: 150ms;
+  --df-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --df-brand: #3b82f6;
+    --df-brand-hover: #60a5fa;
+    --df-surface-bg: #18181b;
+    --df-surface-card: #27272a;
+    --df-surface-raised: #3f3f46;
+    --df-border-base: #27272a;
+    --df-text-main: #f4f4f5;
+    --df-text-muted: #a1a1aa;
+    --df-success: #10b981;
+    --df-warning: #f59e0b;
+    --df-danger: #f43f5e;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 360px;
+  min-height: 480px;
+  background: var(--df-surface-bg);
+  color: var(--df-text-main);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--df-border-base);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--df-brand);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand-name {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(5, 150, 105, 0.08);
+  color: var(--df-success);
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--df-success);
+}
+
+.badge.badge-idle {
+  background: rgba(113, 113, 122, 0.1);
+  color: var(--df-text-muted);
+}
+
+.badge.badge-idle .badge-dot {
+  background: var(--df-text-muted);
+}
+
+.badge.badge-busy {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--df-brand);
+}
+
+.badge.badge-busy .badge-dot {
+  background: var(--df-brand);
+  animation: df-pulse 1.2s infinite;
+}
+
+.badge.badge-error {
+  background: rgba(225, 29, 72, 0.1);
+  color: var(--df-danger);
+}
+
+.badge.badge-error .badge-dot {
+  background: var(--df-danger);
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--df-text-muted);
+  cursor: pointer;
+  transition: background-color var(--df-motion-fast) ease-out, color var(--df-motion-fast) ease-out;
+}
+
+.icon-btn:hover {
+  background: var(--df-surface-card);
+  color: var(--df-text-main);
+}
+
+.icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-title {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.hero-sub {
+  font-size: 11px;
+  color: var(--df-text-muted);
+}
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 44px;
+  height: 24px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.switch-track {
+  display: inline-flex;
+  align-items: center;
+  width: 44px;
+  height: 24px;
+  padding: 3px;
+  border-radius: 9999px;
+  background: #d4d4d8;
+  transition: background-color var(--df-motion-fast) ease-out;
+}
+
+.switch-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: transform var(--df-motion-fast) var(--df-ease-out);
+}
+
+.switch input:checked + .switch-track {
+  background: var(--df-brand);
+}
+
+.switch input:checked + .switch-track .switch-thumb {
+  transform: translateX(20px);
+}
+
+.switch input:focus-visible + .switch-track {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--df-brand);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 三态分段控件：翻译模式（手动 / 常开 / 常关） */
+.seg-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--df-border-base);
+  background: var(--df-surface-card);
+}
+
+.seg-item {
+  border: none;
+  background: transparent;
+  color: var(--df-text-muted);
+  border-radius: 6px;
+  padding: 6px 4px;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color var(--df-motion-fast) ease-out, color var(--df-motion-fast) ease-out;
+}
+
+.seg-item:hover {
+  color: var(--df-text-main);
+}
+
+.seg-item.is-active {
+  background: var(--df-surface-raised);
+  color: var(--df-brand);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.seg-item:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--df-brand);
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--df-text-muted);
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select {
+  width: 100%;
+  appearance: none;
+  padding: 8px 30px 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--df-border-base);
+  background: var(--df-surface-card);
+  color: var(--df-text-main);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.select:focus-visible {
+  outline: none;
+  border-color: var(--df-brand);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.select-chevron {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  color: var(--df-text-muted);
+  pointer-events: none;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--df-text-muted);
+  min-height: 14px;
+}
+
+.hint-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  word-break: break-all;
+  line-height: 1.45;
+}
+
+.btn-inline {
+  margin-top: 8px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.btn-inline:hover {
+  background: rgba(225, 29, 72, 0.08);
+}
+
+.btn-inline[disabled] {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Metrics */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.metric {
+  padding: 10px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--df-border-base);
+  background: var(--df-surface-card);
+  text-align: center;
+}
+
+.metric-label {
+  font-size: 11px;
+  color: var(--df-text-muted);
+}
+
+.metric-value {
+  margin-top: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-pending .metric-value {
+  color: var(--df-warning);
+}
+
+.metric-done .metric-value {
+  color: var(--df-success);
+}
+
+.metric-skip .metric-value {
+  color: var(--df-text-muted);
+}
+
+.section-error {
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: var(--df-danger);
+  background: rgba(225, 29, 72, 0.08);
+  border: 1px solid rgba(225, 29, 72, 0.2);
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-top: 1px solid var(--df-border-base);
+  background: var(--df-surface-card);
+}
+
+.footer-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--df-text-muted);
+  cursor: pointer;
+}
+
+.footer-check input {
+  accent-color: var(--df-brand);
+}
+
+.version {
+  font-size: 11px;
+  color: var(--df-text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@keyframes df-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}

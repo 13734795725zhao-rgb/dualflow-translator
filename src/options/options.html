@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DualFlow Translator 设置</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-logo">DF</span>
+          <div class="brand-text">
+            <div class="brand-name">DualFlow</div>
+            <div class="brand-sub">沉浸式双语翻译</div>
+          </div>
+        </div>
+        <nav class="nav" id="nav">
+          <button class="nav-item is-active" data-tab="registry" type="button">模型仓库</button>
+          <button class="nav-item" data-tab="preferences" type="button">过滤偏好</button>
+          <button class="nav-item" data-tab="rules" type="button">站点规则</button>
+          <button class="nav-item" data-tab="appearance" type="button">外观定制</button>
+        </nav>
+        <div class="sidebar-foot">v1.1.0 · 本地存储</div>
+      </aside>
+
+      <main class="workspace">
+        <!-- 模型仓库 -->
+        <section class="panel is-active" data-panel="registry">
+          <header class="panel-head">
+            <h1>模型仓库</h1>
+            <p class="panel-desc">配置自带 API 的大模型供应商与模型，支持任何 OpenAI 兼容端点。</p>
+          </header>
+          <div class="toolbar">
+            <button id="btn-add-provider" class="btn btn-primary" type="button">+ 添加供应商</button>
+          </div>
+          <div id="provider-list" class="stack"></div>
+        </section>
+
+        <!-- 过滤偏好 -->
+        <section class="panel" data-panel="preferences">
+          <header class="panel-head">
+            <h1>过滤偏好</h1>
+            <p class="panel-desc">调节中文纯度判定阈值与批处理参数，控制 Token 消耗与翻译速度。</p>
+          </header>
+          <div class="stack" id="preferences-panel"></div>
+        </section>
+
+        <!-- 站点规则 -->
+        <section class="panel" data-panel="rules">
+          <header class="panel-head">
+            <h1>站点规则</h1>
+            <p class="panel-desc">为特定域名设置豁免或额外的忽略选择器。</p>
+          </header>
+          <div class="toolbar">
+            <button id="btn-add-rule" class="btn btn-primary" type="button">+ 添加规则</button>
+          </div>
+          <div id="rule-list" class="stack"></div>
+        </section>
+
+        <!-- 外观定制 -->
+        <section class="panel" data-panel="appearance">
+          <header class="panel-head">
+            <h1>外观定制</h1>
+            <p class="panel-desc">调整译文挂载容器的主题与自定义样式。</p>
+          </header>
+          <div class="stack" id="appearance-panel"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- 供应商编辑抽屉 -->
+    <div id="provider-drawer" class="drawer" hidden>
+      <div class="drawer-mask" data-close></div>
+      <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="供应商配置">
+        <header class="drawer-head">
+          <h2 id="drawer-title">添加供应商</h2>
+          <button class="icon-btn" type="button" data-close aria-label="关闭">✕</button>
+        </header>
+        <div class="drawer-body" id="provider-form"></div>
+        <footer class="drawer-foot">
+          <button class="btn" type="button" data-close>取消</button>
+          <button class="btn btn-primary" id="btn-save-provider" type="button">保存</button>
+        </footer>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
+

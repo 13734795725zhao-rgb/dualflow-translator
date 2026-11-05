@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "DualFlow Translator",
+  "version": "1.1.0",
+  "description": "极轻量、自带大模型 API Key 的全语种网页沉浸式双语对照翻译插件",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "DualFlow Translator",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "src/background/index.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "src/content/filter/cjk-detector.js",
+        "src/content/render/in-place-renderer.js",
+        "src/content/ingestion/dom-observer.js",
+        "src/content/content.js"
+      ],
+      "css": ["src/content/style.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "toggle-translate": {
+      "suggested_key": {
+        "default": "Alt+T"
+      },
+      "description": "切换当前标签页的网页双语翻译"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

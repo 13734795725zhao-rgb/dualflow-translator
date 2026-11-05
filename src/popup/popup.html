@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DualFlow Translator</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="brand">
+          <span class="brand-logo" aria-hidden="true">DF</span>
+          <span class="brand-name">DualFlow</span>
+        </div>
+        <div class="header-right">
+          <span id="status-badge" class="badge badge-idle" role="status" aria-live="polite">
+            <span class="badge-dot"></span><span id="status-text">就绪</span>
+          </span>
+          <button id="btn-open-options" class="icon-btn" type="button" title="打开设置" aria-label="打开设置">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" />
+            </svg>
+          </button>
+        </div>
+      </header>
+      <main class="main">
+        <section class="hero">
+          <div class="hero-text">
+            <span class="hero-title">网页双语对照翻译</span>
+            <span class="hero-sub">快捷键：Alt + T</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggle-translate" aria-label="开启网页双语对照翻译" />
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+          </label>
+        </section>
+
+        <section class="section">
+          <span class="section-label">翻译模式（设置一次，所有页面生效）</span>
+          <div class="seg-group" id="mode-group" role="radiogroup" aria-label="翻译模式">
+            <button type="button" class="seg-item" data-mode="manual" role="radio" aria-checked="false">手动</button>
+            <button type="button" class="seg-item" data-mode="always_on" role="radio" aria-checked="false">常开</button>
+            <button type="button" class="seg-item" data-mode="always_off" role="radio" aria-checked="false">常关</button>
+          </div>
+          <div id="mode-hint" class="hint"></div>
+        </section>
+
+        <section class="section">
+          <label class="section-label" for="model-select">翻译驱动大模型</label>
+          <div class="select-wrap">
+            <select id="model-select" class="select"></select>
+            <svg class="select-chevron" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div id="model-hint" class="hint"></div>
+          <div id="endpoint-hint" class="hint hint-mono" title="实际请求的完整 URL"></div>
+        </section>
+
+        <section class="section">
+          <span class="section-label">当前页面解析指标</span>
+          <div class="metrics">
+            <div class="metric metric-pending">
+              <div class="metric-label">待翻译</div>
+              <div class="metric-value" id="stat-queued">-</div>
+            </div>
+            <div class="metric metric-done">
+              <div class="metric-label">已就绪</div>
+              <div class="metric-value" id="stat-rendered">-</div>
+            </div>
+            <div class="metric metric-skip">
+              <div class="metric-label">原生跳过</div>
+              <div class="metric-value" id="stat-skipped">-</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-error" id="error-box" hidden>
+          <span id="error-text"></span>
+          <button id="btn-reload-translate" class="btn-inline" type="button" hidden>
+            刷新页面并翻译
+          </button>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <label class="footer-check">
+          <input type="checkbox" id="site-bypass" />
+          <span id="site-label">在当前站点禁用翻译</span>
+        </label>
+        <span class="version">v1.1.0</span>
+      </footer>
+    </div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
